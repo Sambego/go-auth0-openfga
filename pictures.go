@@ -104,6 +104,7 @@ func (ps *pictureService) postPictureHandler(w http.ResponseWriter, r *http.Requ
 
 	// Create the ownership tupple for the current user
 	// All pictures have public access by default
+	// All pictures belong to the root systen
 	tuples := []openfga.TupleKey{
 		{
 			Object:   fmt.Sprintf("picture:%s", picture.Id),
@@ -114,6 +115,11 @@ func (ps *pictureService) postPictureHandler(w http.ResponseWriter, r *http.Requ
 			Object:   fmt.Sprintf("picture:%s", picture.Id),
 			Relation: "viewer",
 			User:     "user:*",
+		},
+		{
+			Object:   fmt.Sprintf("picture:%s", picture.Id),
+			Relation: "system",
+			User:     "system:root",
 		},
 	}
 

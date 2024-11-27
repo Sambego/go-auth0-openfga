@@ -2,11 +2,14 @@ model
     schema 1.1
 
 type user
+type system
+    relations
+      define admin : [user]
 type picture
     relations
+        define system: [system]
         define owner: [user]
         define viewer: [user, user:*]
-        define admin: [user]
         
         define can_view: viewer or can_delete
-        define can_delete: owner or admin
+        define can_delete: owner or admin from system

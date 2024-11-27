@@ -106,7 +106,7 @@ func (fga *FGA) CheckWithRoles(fgaObject string, fgaRelation string, fgaUser str
 	var contextualTuples []client.ClientTupleKey
 	for _, role := range roles {
 		contextualTuples = append(contextualTuples, client.ClientTupleKey{
-			Object:   fgaObject,
+			Object:   "system:root",
 			Relation: role,
 			User:     fgaUser,
 		})
